@@ -45,6 +45,6 @@ jobs:
         username: ec2-user
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
-        src: "/home/runner/work/SSH_SCP/SSH_SCP/target/SubmissionDataForm-0.0.1-SNAPSHOT.war"
+        src: "/home/runner/work/SSH_SCP/SSH_SCP/target/SubmissionDataForm-0.0.1-SNAPSHOT.jar"
         dest: "/home/ec2-user/GitHub_Actions/"
     
