@@ -34,6 +34,7 @@ jobs:
           user: ec2-user 
           command: 
                   sudo su;
+                  mkdir GitHub_Actions;
                   ls -a;
             
   #Copy via SCP              
@@ -45,5 +46,5 @@ jobs:
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         src: "/home/runner/work/SSH_SCP/SSH_SCP/target/SubmissionDataForm-0.0.1-SNAPSHOT.war"
-        dest: "/home/ec2-user/Actions_Git/"
+        dest: "/home/ec2-user/GitHub_Actions/"
     
