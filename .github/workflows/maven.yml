@@ -1,0 +1,41 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+  #Checkout the code
+    - name: Checkout the code
+      uses: actions/checkout@v2
+      
+ #Build with maven     
+    - name: Build maven
+      run: 
+            mvn clean;
+            mvn install;
+            
+  #Copy via SCP              
+    - name: copy file via ssh password
+      uses: noobly314/deploy-with-scp@v1
+      with:
+        server-ip: 18.219.65.137
+        username: ec2-user
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        src: "/home/runner/work/SSH_SCP/SSH_SCP/target/SubmissionDataForm-0.0.1-SNAPSHOT.war"
+        dest: "/home/ec2-user/Actions_Git/"
+    - name: Check path
+      run: 
+            cd Actions_Git;
+            ls -a;
+       
