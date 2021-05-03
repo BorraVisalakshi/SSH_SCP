@@ -29,22 +29,21 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          host: 18.219.65.137
-          port: 22
-          user: ec2-user 
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          user: ${{ secrets.USER }}
           command: 
                   sudo su;
-                  mkdir GitHub_Actions;
                   ls -a;
             
   #Copy via SCP              
     - name: copy file via ssh password
       uses: noobly314/deploy-with-scp@v1
       with:
-        server-ip: 18.219.65.137
-        username: ec2-user
+        server-ip: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.USER }}
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22
+        port: ${{ secrets.PORT }}
         src: "/home/runner/work/SSH_SCP/SSH_SCP/target/SubmissionDataForm-0.0.1-SNAPSHOT.jar"
         dest: "/home/ec2-user/GitHub_Actions/"
     
