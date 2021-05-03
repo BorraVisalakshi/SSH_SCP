@@ -24,6 +24,18 @@ jobs:
             mvn clean;
             mvn install;
             
+ #Velify the all the folders in Main Directory     
+    - name: Operations
+      uses: fifsky/ssh-action@master
+      with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: 18.219.65.137
+          port: 22
+          user: ec2-user 
+          command: 
+                  sudo su;
+                  ls -a;
+            
   #Copy via SCP              
     - name: copy file via ssh password
       uses: noobly314/deploy-with-scp@v1
@@ -34,8 +46,4 @@ jobs:
         port: 22
         src: "/home/runner/work/SSH_SCP/SSH_SCP/target/SubmissionDataForm-0.0.1-SNAPSHOT.war"
         dest: "/home/ec2-user/Actions_Git/"
-    - name: Check path
-      run: 
-            cd Actions_Git;
-            ls -a;
-       
+    
