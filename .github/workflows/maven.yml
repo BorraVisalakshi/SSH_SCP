@@ -36,7 +36,7 @@ jobs:
                   sudo su;
                   ls -a;
             
-  #Copy via SCP              
+  #Copy via SCP to remote repository           
     - name: copy file via ssh password
       uses: noobly314/deploy-with-scp@v1
       with:
