@@ -18,7 +18,7 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
       
- #Build with maven     
+ #Build with maven commands    
     - name: Build maven
       run: 
             mvn clean;
